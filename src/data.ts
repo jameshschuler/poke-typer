@@ -92,21 +92,40 @@ const typesData = new Map<string, TypeData>([
     Types.Electric,
     {
       offense: new Map<Types, Effectiveness>([]),
-      defense: new Map<Types, Effectiveness>([]),
+      defense: new Map<Types, Effectiveness>([
+        [Types.Electric, Effectiveness.NotVeryEffective],
+        [Types.Flying, Effectiveness.NotVeryEffective],
+        [Types.Steel, Effectiveness.NotVeryEffective],
+        [Types.Ground, Effectiveness.SuperEffective],
+      ]),
     },
   ],
   [
     Types.Fairy,
     {
       offense: new Map<Types, Effectiveness>([]),
-      defense: new Map<Types, Effectiveness>([]),
+      defense: new Map<Types, Effectiveness>([
+        [Types.Dragon, Effectiveness.NoEffect],
+        [Types.Bug, Effectiveness.NotVeryEffective],
+        [Types.Dark, Effectiveness.NotVeryEffective],
+        [Types.Fighting, Effectiveness.NotVeryEffective],
+        [Types.Poison, Effectiveness.SuperEffective],
+        [Types.Steel, Effectiveness.SuperEffective],
+      ]),
     },
   ],
   [
     Types.Fighting,
     {
       offense: new Map<Types, Effectiveness>([]),
-      defense: new Map<Types, Effectiveness>([]),
+      defense: new Map<Types, Effectiveness>([
+        [Types.Bug, Effectiveness.NotVeryEffective],
+        [Types.Dark, Effectiveness.NotVeryEffective],
+        [Types.Rock, Effectiveness.NotVeryEffective],
+        [Types.Fairy, Effectiveness.SuperEffective],
+        [Types.Flying, Effectiveness.SuperEffective],
+        [Types.Psychic, Effectiveness.SuperEffective],
+      ]),
     },
   ],
   [
