@@ -23,7 +23,7 @@
         v-model="selectedType"
         @change="handleTypeChange"
       >
-        <option disabled value="">Select a Type</option>
+        <option disabled value="">Select Type</option>
         <option v-for="k in Object.keys(Types)" :value="k">{{ k }}</option>
       </select>
     </fieldset>
