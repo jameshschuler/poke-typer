@@ -1,1 +1,3 @@
 # PokeTyper
+
+## About

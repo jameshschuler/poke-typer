@@ -7,12 +7,11 @@ export interface TypeData {
   defense: Map<Types, Effectiveness>;
 }
 
-interface GridTile {
+export interface GridTile {
   name: Types;
   state: Effectiveness;
 }
 
-const grid = generateInitialGrid();
 export function generateInitialGrid(): GridTile[] {
   return Object.keys(Types).map((key: string) => {
     return {
@@ -22,8 +21,7 @@ export function generateInitialGrid(): GridTile[] {
   });
 }
 
-// TODO: ignore normal effectiveness?
-const typesData = new Map<string, TypeData>([
+export const typesData = new Map<string, TypeData>([
   [
     Types.Bug,
     {
@@ -310,18 +308,3 @@ const typesData = new Map<string, TypeData>([
     },
   ],
 ]);
-console.log(typesData);
-
-// Defense
-export function test(selectedType: Types) {
-  const selectedTypeData = typesData.get(selectedType);
-
-  return grid.map((tile: GridTile) => {
-    const newState = selectedTypeData!.defense.get(tile.name);
-
-    return {
-      ...tile,
-      state: newState ?? Effectiveness.Normal,
-    } as GridTile;
-  });
-}

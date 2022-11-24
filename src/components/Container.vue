@@ -2,10 +2,21 @@
   <main
     class="container mx-auto mt-6 flex items-center justify-center flex-col"
   >
-    <p class="mb-6">Show me which types to use and which to avoid</p>
-
+    <fieldset class="mb-6">
+      <label for="position">Position</label>
+      <select
+        id="position"
+        disabled="true"
+        class="mt-1 p-2 w-xs block mx-auto rounded-md bg-gray-200"
+        v-model="selectedPosition"
+        @change="handlePositionChange"
+      >
+        <option value="attacking">Attacking</option>
+        <option value="defending">Defending</option>
+      </select>
+    </fieldset>
     <fieldset>
-      <label class="" for="type">Pokémon Type</label>
+      <label for="type">Pokémon Type</label>
       <select
         id="type"
         class="mt-1 p-2 w-xs block mx-auto rounded-md"
@@ -17,34 +28,42 @@
       </select>
     </fieldset>
 
-    <!-- <select v-model="selectedPosition" @change="handlePositionChange">
-        <option value="attack">Attack</option>
-        <option value="defense">Defense</option>
-      </select> -->
-
-    <TileContainer />
+    <TileContainer :grid="grid" />
   </main>
 </template>
 <script setup lang="ts">
-import { test } from "@/data";
-import { Types } from "@/utils/enums";
+import { generateInitialGrid, GridTile, typesData } from "@/data";
+import { Effectiveness, Types } from "@/utils/enums";
 import { ref } from "vue";
 import TileContainer from "./TileContainer.vue";
 
+const grid = ref<GridTile[]>(generateInitialGrid());
+console.log(grid.value);
+
 const selectedType = ref<string>("");
 function handleTypeChange() {
-  console.log("handleTypeChange");
+  if (selectedType.value === "") {
+    grid.value = generateInitialGrid();
+    return;
+  }
+
+  const selectedTypeData = typesData.get(selectedType.value);
+
+  grid.value = grid.value.map((tile: GridTile) => {
+    const newState = selectedTypeData!.defense.get(tile.name);
+
+    return {
+      ...tile,
+      state: newState ?? Effectiveness.Normal,
+    } as GridTile;
+  });
+
+  console.log(grid.value);
 }
 
-console.log(test(Types.Dark));
-
-const selectedPosition = ref<string>("attack");
+const selectedPosition = ref<string>("attacking");
 function handlePositionChange() {
   console.log("handlePositionChange");
-  // TODO: upgrade grid
-  // Each cell in grid has a type (fire, water, etc.) and state (super-effective, not very effective, etc.)
-  // TODO: need to keep track of grid state
-  // How to calculate current state?
 }
 </script>
 <style lang="scss" scoped></style>
