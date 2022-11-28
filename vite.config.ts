@@ -21,6 +21,7 @@ export default defineConfig({
     vue(),
     WindiCSS(),
     VitePWA({
+      injectRegister: "auto",
       registerType: "autoUpdate",
       workbox: {
         clientsClaim: true,
@@ -28,6 +29,26 @@ export default defineConfig({
       },
       devOptions: {
         enabled: true,
+      },
+      includeAssets: ["apple-touch-icon.png", "masked-icon.svg"],
+      manifest: {
+        name: "PokéTyper",
+        short_name: "PokéTyper",
+        description:
+          "Simple web app that displays the effectiveness of various Pokémon types compared to other types.",
+        theme_color: "#ffffff",
+        icons: [
+          {
+            src: "pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
       },
     }),
   ],
