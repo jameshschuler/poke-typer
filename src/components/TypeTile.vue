@@ -38,13 +38,14 @@ figure {
     }
 
     &.normal {
-      filter: brightness(85%);
+      filter: brightness(90%);
     }
 
     &.supereffective {
       filter: brightness(100%);
-      box-shadow: 0 0 10px #9ecaed;
+      box-shadow: 0 0 15px #2f6282;
       border-radius: 50%;
+      width: 60px;
     }
   }
 }

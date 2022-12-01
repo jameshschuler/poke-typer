@@ -38,7 +38,6 @@ import { ref } from "vue";
 import TileContainer from "./TileContainer.vue";
 
 const grid = ref<GridTile[]>(generateInitialGrid());
-console.log(grid.value);
 
 const selectedType = ref<string>("");
 function handleTypeChange() {
@@ -57,13 +56,9 @@ function handleTypeChange() {
       state: newState ?? Effectiveness.Normal,
     } as GridTile;
   });
-
-  console.log(grid.value);
 }
 
 const selectedPosition = ref<string>("attacking");
-function handlePositionChange() {
-  console.log("handlePositionChange");
-}
+function handlePositionChange() {}
 </script>
 <style lang="scss" scoped></style>
