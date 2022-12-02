@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="tooltip">
     <figure>
       <img class="mx-auto" :class="state" :src="iconPath" :alt="name" />
     </figure>
+    <span class="tooltiptext">{{ name }}</span>
   </div>
 </template>
 <script setup lang="ts">
@@ -26,6 +27,30 @@ const iconPath = computed(
 );
 </script>
 <style lang="scss" scoped>
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
+  }
+
+  .tooltiptext {
+    visibility: hidden;
+    width: 90%;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    margin: 0 5%;
+  }
+}
+
 figure {
   img {
     width: 50px;
